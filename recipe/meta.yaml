@@ -31,7 +31,7 @@ build:
 requirements:
   build:
     - arm-variant * {{ arm_variant_type }}  # [aarch64]
-    - {{ stdlib("c") }}
+    - {{ stdlib("c") }}                     # [linux]
     - patchelf <0.18.0                      # [linux]
     - cf-nvidia-tools                       # [linux]
 
@@ -49,7 +49,7 @@ outputs:
         - {{ compiler("c") }}
         - {{ compiler("cxx") }}
         - arm-variant * {{ arm_variant_type }}  # [aarch64]
-        - {{ stdlib("c") }}
+        - {{ stdlib("c") }}                     # [linux]
       host:
          - cuda-version {{ cuda_version }}
       run:
@@ -60,7 +60,7 @@ outputs:
          - cuda-nvrtc
       run_constrained:
         - arm-variant * {{ arm_variant_type }}  # [aarch64]
-        - __glibc >= {{ c_stdlib_version }}
+        - __glibc >= {{ c_stdlib_version }}     # [linux]
     test:
       requires:
         - patchelf  # [linux]
@@ -110,7 +110,7 @@ outputs:
         - {{ compiler("c") }}
         - {{ compiler("cxx") }}
         - arm-variant * {{ arm_variant_type }}  # [aarch64]
-        - {{ stdlib("c") }}
+        - {{ stdlib("c") }}                     # [linux]
       host:
         - cuda-version {{ cuda_version }}
       run:
@@ -121,11 +121,11 @@ outputs:
       run_constrained:
         - arm-variant * {{ arm_variant_type }}  # [aarch64]
         - libcublas-static >={{ version }}      # [linux]
-        - __glibc >= {{ c_stdlib_version }}
+        - __glibc >= {{ c_stdlib_version }}     # [linux]
     test:
       requires:
         - {{ compiler("c") }}
-        - {{ stdlib("c") }}
+        - {{ stdlib("c") }}           # [linux]
         #- gxx                         # [linux]
         #- gcc                         # [linux]
         - vs2019_win-64               # [win]
@@ -188,7 +188,7 @@ outputs:
         - {{ compiler("c") }}
         - {{ compiler("cxx") }}
         - arm-variant * {{ arm_variant_type }}  # [aarch64]
-        - {{ stdlib("c") }}
+        - {{ stdlib("c") }}                     # [linux]
       host:
         - cuda-version {{ cuda_version }}
       run:
@@ -199,7 +199,7 @@ outputs:
         - cuda-nvrtc
       run_constrained:
         - arm-variant * {{ arm_variant_type }}  # [aarch64]
-        - __glibc >= {{ c_stdlib_version }}
+        - __glibc >= {{ c_stdlib_version }}     # [linux]
     test:
       commands:
         - test -f $PREFIX/targets/{{ target_name }}/lib/libcublas_static.a
