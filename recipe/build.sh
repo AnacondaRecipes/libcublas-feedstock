@@ -5,7 +5,7 @@ check-glibc bin/* lib/*.so.* lib64/*.so.*
 
 # Install to conda style directories
 [[ -d lib64 ]] && mv lib64 lib
-mkdir -p ${PREFIX}/lib/stubs
+mkdir -p ${PREFIX}/lib
 [[ -d pkg-config ]] && mv pkg-config ${PREFIX}/lib/pkgconfig
 [[ -d "$PREFIX/lib/pkgconfig" ]] && sed -E -i "s|cudaroot=.+|cudaroot=$PREFIX|g" $PREFIX/lib/pkgconfig/cublas*.pc
 
@@ -23,11 +23,11 @@ for i in `ls`; do
         mkdir -p ${PREFIX}/$i
         cp -rv $i ${PREFIX}/${targetsDir}
         if [[ $i == "lib" ]]; then
-            for j in "$i"/{*.so,stubs/*.so}*; do
+            for j in "$i"/*.so*; do
                 # Shared libraries are symlinked in $PREFIX/lib
                 ln -s ${PREFIX}/${targetsDir}/$j ${PREFIX}/$j
 
-                if [[ $j =~ \.so\. ]] || [[ $j =~ stubs/.*\.so$ ]]; then
+                if [[ $j =~ \.so\. ]]; then
                     patchelf --set-rpath '$ORIGIN' --force-rpath ${PREFIX}/${targetsDir}/$j
                 fi
             done
