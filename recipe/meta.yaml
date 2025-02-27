@@ -87,6 +87,11 @@ outputs:
 
   - name: libcublas-dev
     build:
+      # The stubs contain this runpath, but we don't patch them out (it's unneeded)
+      # NB this turns off this check for other binaries too, but I can't find
+      # another option
+      runpath_whitelist:
+        - $ORIGIN
       binary_relocation: false
       run_exports:
         - {{ pin_subpackage("libcublas", max_pin="x") }}
