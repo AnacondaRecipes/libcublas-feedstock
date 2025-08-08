@@ -88,13 +88,21 @@ outputs:
     build:
       binary_relocation: false
       # conda_build.exceptions.RunPathError: runpaths check failed
-      # ERROR (libcublas-dev,targets/sbsa-linux/lib/stubs/libcublas.so): runpaths ['$ORIGIN'] found
+      # ERROR (libcublas-dev,targets/*/lib/stubs/libcublas.so): runpaths ['$ORIGIN'] found
       # The stub files use $ORIGIN runpaths which are valid but flagged by conda-build
       # This whitelist allows $ORIGIN runpaths in the stub files during build-time validation.
       # Note: We have comprehensive rpath validation in test-rpath.sh that ensures all libraries
       # have the correct $ORIGIN rpath for runtime compatibility.
-      runpath_whitelist: # [linux and aarch64]
-        - $ORIGIN  # [linux and aarch64]
+      runpath_whitelist: # [linux]
+        - $ORIGIN  # [linux]
+      # Repacked binaries on linux have flag DT_TLSDESC set (GNU_HASH), which is not supported by lief.
+      # This is a workaround to ignore the overlinking error for problematic files.
+      overlinking_ignore_patterns: # [linux and aarch64]
+        - "targets/sbsa-linux/lib/stubs/libcublas.so*"  # [linux and aarch64]
+        - "targets/sbsa-linux/lib/stubs/libcublasLt.so*"  # [linux and aarch64]
+        - "targets/sbsa-linux/lib/libcublas.so*"  # [linux and aarch64]
+        - "targets/sbsa-linux/lib/libcublasLt.so*"  # [linux and aarch64]
+        - "targets/sbsa-linux/lib/libnvblas.so*"  # [linux and aarch64]
       run_exports:
         - {{ pin_subpackage("libcublas", max_pin="x") }}
     files:
