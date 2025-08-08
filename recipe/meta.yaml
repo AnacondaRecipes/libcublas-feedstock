@@ -39,6 +39,12 @@ outputs:
   - name: libcublas
     build:
       binary_relocation: false
+      # Repacked binaries on linux aarch64 have flag DT_TLSDESC set (GNU_HASH), which is not supported by lief.
+      # This is a workaround to ignore the overlinking error for problematic files.
+      overlinking_ignore_patterns: # [linux and aarch64]
+        - "targets/sbsa-linux/lib/libcublas.so*"  # [linux and aarch64]
+        - "targets/sbsa-linux/lib/libcublasLt.so*"  # [linux and aarch64]
+        - "targets/sbsa-linux/lib/libnvblas.so*"  # [linux and aarch64]
     files:
       - lib/lib*blas*.so.*                            # [linux]
       - targets/{{ target_name }}/lib/lib*blas*.so.*  # [linux]
