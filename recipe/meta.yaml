@@ -87,6 +87,13 @@ outputs:
   - name: libcublas-dev
     build:
       binary_relocation: false
+      # conda_build.exceptions.RunPathError: runpaths check failed
+      # ERROR (libcublas-dev,targets/sbsa-linux/lib/stubs/libcublas.so): runpaths ['$ORIGIN'] found in /croot/libcublas-split_1754644952003/_h_env_placehold_[truncated]/targets/sbsa-linux/lib/stubs/libcublas.so
+      # Repacked binaries on linux aarch64 have flag DT_TLSDESC set (GNU_HASH), which is not supported by lief.
+      # This is a workaround to ignore the overlinking error for problematic stub files.
+      overlinking_ignore_patterns: # [linux and aarch64]
+        - "targets/sbsa-linux/lib/stubs/libcublas.so*"  # [linux and aarch64]
+        - "targets/sbsa-linux/lib/stubs/libcublasLt.so*"  # [linux and aarch64]
       run_exports:
         - {{ pin_subpackage("libcublas", max_pin="x") }}
     files:
