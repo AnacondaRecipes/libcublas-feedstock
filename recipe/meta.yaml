@@ -220,8 +220,6 @@ about:
   dev_url: https://docs.nvidia.com/cuda/cublas/
 
 extra:
-  skip-lints:
-    - license_file_overspecified
   feedstock-name: {{ name }}
   recipe-maintainers:
     - conda-forge/cuda
