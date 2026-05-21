@@ -86,10 +86,12 @@ outputs:
       license: LicenseRef-NVIDIA-End-User-License-Agreement
       license_file: LICENSE
       license_url: https://docs.nvidia.com/cuda/eula/index.html
+      license_family: Other
       summary: An implementation of BLAS (Basic Linear Algebra Subprograms) on top of the NVIDIA CUDA runtime.
       description: |
         The cuBLAS Library provides a GPU-accelerated implementation of the basic linear algebra subroutines (BLAS).
       doc_url: https://docs.nvidia.com/cuda/cublas/
+      dev_url: https://docs.nvidia.com/cuda/cublas/
 
   - name: libcublas-dev
     build:
@@ -171,10 +173,12 @@ outputs:
       license: LicenseRef-NVIDIA-End-User-License-Agreement
       license_file: LICENSE
       license_url: https://docs.nvidia.com/cuda/eula/index.html
+      license_family: Other
       summary: An implementation of BLAS (Basic Linear Algebra Subprograms) on top of the NVIDIA CUDA runtime.
       description: |
         The cuBLAS Library provides a GPU-accelerated implementation of the basic linear algebra subroutines (BLAS).
       doc_url: https://docs.nvidia.com/cuda/cublas/
+      dev_url: https://docs.nvidia.com/cuda/cublas/
 
   - name: libcublas-static
     build:
@@ -206,20 +210,24 @@ outputs:
       license: LicenseRef-NVIDIA-End-User-License-Agreement
       license_file: LICENSE
       license_url: https://docs.nvidia.com/cuda/eula/index.html
+      license_family: Other
       summary: An implementation of BLAS (Basic Linear Algebra Subprograms) on top of the NVIDIA CUDA runtime.
       description: |
         The cuBLAS Library provides a GPU-accelerated implementation of the basic linear algebra subroutines (BLAS).
       doc_url: https://docs.nvidia.com/cuda/cublas/
+      dev_url: https://docs.nvidia.com/cuda/cublas/
 
 about:
   home: https://developer.nvidia.com/cublas
   license: LicenseRef-NVIDIA-End-User-License-Agreement
   license_file: LICENSE
   license_url: https://docs.nvidia.com/cuda/eula/index.html
+  license_family: Other
   summary: An implementation of BLAS (Basic Linear Algebra Subprograms) on top of the NVIDIA CUDA runtime.
   description: |
     The cuBLAS Library provides a GPU-accelerated implementation of the basic linear algebra subroutines (BLAS).
   doc_url: https://docs.nvidia.com/cuda/cublas/
+  dev_url: https://docs.nvidia.com/cuda/cublas/
 
 extra:
   feedstock-name: {{ name }}
