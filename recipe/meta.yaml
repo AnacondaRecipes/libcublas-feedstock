@@ -1,6 +1,6 @@
 {% set name = "libcublas" %}
-{% set version = "13.4.0.1" %}
-{% set cuda_version = "13.2" %}
+{% set version = "13.5.1.27" %}
+{% set cuda_version = "13.3" %}
 {% set platform = "linux-x86_64" %}  # [linux64]
 {% set platform = "linux-sbsa" %}  # [aarch64]
 {% set platform = "windows-x86_64" %}  # [win]
@@ -16,9 +16,9 @@ package:
 
 source:
   url: https://developer.download.nvidia.com/compute/cuda/redist/{{ name }}/{{ platform }}/{{ name }}-{{ platform }}-{{ version }}-archive.{{ extension }}
-  sha256: eda8001ac6b9a6ad862d054aa9b502ff39684147f1e86d02cc0a58a5ce67f62e  # [linux64]
-  sha256: c4d7e9d8f976aa866c48c5e186db61bf617805dafe97f1c32277162e719d7e03  # [aarch64]
-  sha256: af2de4aab12ce773f934529877ae444452ddf9a5b1156aa2d7549f0ca39693ea  # [win]
+  sha256: 35a898360520d6101ffcaf36c0d04496b54d4fc2afb82f7fce44218c54513808  # [linux64]
+  sha256: cdcfea21e8a68ce90c87aaf2e424883782dafb4792feb4e6ea903b97e9aeb6a7  # [aarch64]
+  sha256: c946e1c825e05895747a95ed4fee18030b08052c09783b9b7b19818fd2e31f58  # [win]
 
 build:
   number: 0
